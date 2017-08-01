@@ -27,7 +27,7 @@ beforeEach(function() {
 
 describe('#findAdjacentNodes', function() {
   it("should return an array of adjacent nodes", function() {
-    expect(findAdjacent('34th&6th',  vertices, edges)).toEqual([{name: '23rd&6th', distance: null, predecessor: null},
+    expect(findAdjacent('34th&6th', vertices, edges)).toEqual([{name: '23rd&6th', distance: null, predecessor: null},
       {name: '28th&Bwy', distance: null, predecessor: null}
     ])
   });
