@@ -25,9 +25,10 @@ beforeEach(function() {
 	]
 })
 
-describe('#findAdjacentNodes', function() {
+describe('#findAdjacent', function() {
   it("should return an array of adjacent nodes", function() {
-    expect(findAdjacent('34th&6th',  vertices, edges)).toEqual([{name: '23rd&6th', distance: null, predecessor: null},
+    expect(findAdjacent('34th&6th',  vertices, edges)).toEqual([
+      {name: '23rd&6th', distance: null, predecessor: null},
       {name: '28th&Bwy', distance: null, predecessor: null}
     ])
   });
@@ -40,22 +41,21 @@ describe('#findAdjacentNodes', function() {
     ])
     // but these nodes are not in the node list?
     // 23rd&Broadway
-    // 33rd&Lex
   })
 });
 
 describe('#markDistanceAndPredecessor', function() {
-  it("should return an array of adjacent nodes", function() {
+  it("should mark distance and predecessor on adjacent nodes", function() {
     let twentyThirdAndSixth = vertices[1]
-    let twentyEighthAndBroadway = vertices[4]
+    let twentyEigthAndBroadway = vertices[2]
     let thirtyFourthAndSixth = vertices[0]
-    let adjacentNodes = [twentyThirdAndSixth, twentyEighthAndBroadway]
+    let adjacentNodes = [twentyThirdAndSixth, twentyEigthAndBroadway]
 
     markDistanceAndPredecessor(thirtyFourthAndSixth, adjacentNodes)
 
     expect(twentyThirdAndSixth.distance).toEqual(1)
-    expect(twentyEighthAndBroadway.distance).toEqual(1)
-    expect(twentyEighthAndBroadway.predecessor).toEqual(thirtyFourthAndSixth)
+    expect(twentyEigthAndBroadway.distance).toEqual(1)
+    expect(twentyEigthAndBroadway.predecessor).toEqual(thirtyFourthAndSixth)
   });
 });
 
