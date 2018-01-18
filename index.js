@@ -4,6 +4,7 @@ function bfs(rootNode, verticess, edgess) {
 
     verticess[0].distance = 0;
     queue.push(rootNode)
+    rNodes.push(rootNode)
 
     while (queue.length > 0) {
         stuff(rNodes, verticess, edgess, queue)
@@ -13,12 +14,12 @@ function bfs(rootNode, verticess, edgess) {
 }
 
 function stuff(rNodes, verticess, edgess, queue) {
-    // console.log("stuff")
-    // console.log(queue)
     let fNode = queue.shift()
-    rNodes.push(fNode)
     let nnodes = findAdjacent(fNode, verticess, edgess)
     let mmNodes = markDistanceAndPredecessor(fNode, nnodes)
+    mmNodes.forEach((n) => {
+        rNodes.push(n)
+    })
     for (let i = 0; i < mmNodes.length; i++) {
         queue.push(mmNodes[i])
         stuff(rNodes, verticess, edgess, queue)
@@ -83,6 +84,6 @@ let verticess = [
 // { name: '28th&Bwy', distance: null, predecessor: null }
 // ])
 
-bfs(verticess[0], verticess, edgess).map((vertex) => {
-    console.log(vertex.name)
-})
+// bfs(verticess[0], verticess, edgess).map((vertex) => {
+//     console.log(vertex.name)
+// })
