@@ -63,7 +63,6 @@ describe('#markDistanceAndPredecessor', function () {
 describe('#bfs', function () {
   it("should return an array of nodes in the order they were visited", function () {
     let startingNode = vertices[0]
-    console.log(bfs(startingNode, vertices, edges))
     expect(bfs(startingNode, vertices, edges).map(function (vertex) { return vertex.name; })).toEqual(['34th&6th', '23rd&6th', '28th&Bwy', '14th&6th', '23rd&Bwy', '14th&Lex', '23rd&Lex'])
   })
 })
