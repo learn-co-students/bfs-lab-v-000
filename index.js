@@ -1,22 +1,74 @@
 function bfs(rootNode, verticess, edgess) {
     let rNodes = [];
     let queue = [];
+    // if (verticess[0] === rootNode) {
+    //     rootNode.distance = 0;
+    // }
 
     verticess[0].distance = 0;
     queue.push(rootNode)
-    rNodes.push(rootNode)
 
-    while (queue.length != 0) {
-        let fNode = queue.shift()
+    // rNodes.push(rootNode)
 
-        let nnodes = findAdjacent(fNode, verticess, edgess)
-        markDistanceAndPredecessor(fNode, nnodes)
-        rNodes = rNodes.concat(nnodes)
-        queue = queue.concat(nnodes)
+    // let nodes = findAdjacent(rootNode, verticess, edgess)
+    // let mNodes = markDistanceAndPredecessor(rootNode, nodes)
+
+    // queue.push(mNodes[0])
+    // queue.push(mNodes[1])
+    console.log("here 1")
+    console.log(queue)
+    console.log(queue.length)
+
+    while (queue.length > 0) {
+        console.log("here 2")
+        stuff(rNodes, verticess, edgess, queue)
+        // let fNode = queue.shift
+        // rNodes.push(fNode)
+        // let nnodes = findAdjacent(fNode, verticess, edgess)
+        // let mmNodes = markDistanceAndPredecessor(fNode, nnodes)
+        // for (let i = 0; i < mmNodes.length; i++) {
+        //     if (mmNodes[i]) {
+        //         queue.push(mmNodes[i])
+        //         stuff(rNodes, verticess, edgess, queue)
+        //     }
+        // }
     }
+
+    console.log("here 3")
 
     console.log(rNodes)
     return rNodes
+
+
+
+
+
+    // mNodes.map((n) => {
+    //     return bfs(n, verticess, edgess)
+    // })
+    // mNodes.forEach((n) => {
+    //     bfs(n, verticess, edgess)
+    // })
+
+    // for (let i = 0; i < mNodes.length; i++) {
+    //     bfs(mNodes[i], verticess, edgess)
+    //     return mNodes[i]
+    // }
+
+
+}
+
+function stuff(rNodes, verticess, edgess, queue) {
+    console.log("stuff")
+    console.log(queue)
+    let fNode = queue.shift()
+    rNodes.push(fNode)
+    let nnodes = findAdjacent(fNode, verticess, edgess)
+    let mmNodes = markDistanceAndPredecessor(fNode, nnodes)
+    for (let i = 0; i < mmNodes.length; i++) {
+        queue.push(mmNodes[i])
+        stuff(rNodes, verticess, edgess, queue)
+    }
 }
 
 function findAdjacent(node, vertices, edges) {
