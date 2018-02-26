@@ -12,7 +12,6 @@ function bfs(startingNode, vertices, edges){
   return discoverOrder
 }
 
-// need to write a test for non-discovered nodes
 function findAdjacent(nodeName,  vertices, edges){
   return edges.filter(function(edge){
     return edge.includes(nodeName)
