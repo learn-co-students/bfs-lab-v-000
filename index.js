@@ -7,7 +7,7 @@ function bfs(rootNode, vertices, edges){
     let discoverOrder = [rootNode];
 
     //while nodes are in queue
-    while(queue.length != 0){
+    while(queue.length !== 0){
         //set current node to first node in queue, and remove from queue array
         let currentNode = queue.shift();
 
