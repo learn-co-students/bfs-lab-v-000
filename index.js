@@ -1,13 +1,12 @@
 function bfs(startingNode, vertices, edges){
-  let queue = []
-  let nodesVisited = []
-  queue.push(startingNode)
+  let queue = [startingNode]
+  let nodesVisited = [startingNode]
   while(queue.length !== 0) {
-    let firstNode = queue.shift()
-    if (!nodesVisited.includes(firstNode)) {
-      nodesVisited.push(firstNode)
+    let currentNode = queue.shift()
+    if (!nodesVisited.includes(currentNode)) {
+      nodesVisited.push(currentNode)
     }
-    let adjacentVertices = findAdjacent(firstNode.name, vertices, edges)
+    let adjacentVertices = findAdjacent(currentNode.name, vertices, edges)
       for (let i = 0; i < adjacentVertices.length; i++) {
         markDistanceAndPredecessor(adjacentVertices[i], adjacentVertices)
         queue.push(adjacentVertices[i])
