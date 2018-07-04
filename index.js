@@ -41,5 +41,24 @@ function markDistanceAndPredecessor(node, adjacentNodes){
 }
 
 function bfs(rootNode, vertices, edges){
+  rootNode.distance = 0
 
+  let visited = [rootNode]
+  let explored = []
+  let currentNode
+  let adjacentNodes = []
+
+  while (0 !== visited.length){
+    currentNode = visited.shift()
+
+    adjacentNodes = findAdjacent(currentNode.name, vertices, edges)
+
+    markDistanceAndPredecessor(currentNode, adjacentNodes)
+
+    visited = visited.concat(adjacentNodes)
+
+    explored.push(currentNode)
+  }
+
+  return explored
 }
