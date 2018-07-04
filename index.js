@@ -33,6 +33,13 @@ function findAdjacent(vertex, vertices, edges){
     return undiscoveredAdjacentVertices
 }
 
+function markDistanceAndPredecessor(node, adjacentNodes){
+  for (let adjacentNode of adjacentNodes){
+    adjacentNode.predecessor = node
+    adjacentNode.distance = node.distance + 1
+  }
+}
+
 function bfs(rootNode, vertices, edges){
 
 }
