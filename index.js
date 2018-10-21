@@ -21,8 +21,8 @@ function findAdjacent(vertexName, vertices, edges) {
   for (const edge of edges) {
     if (edge.includes(vertexName)) {
       let adjacentVertexName = edge.filter(name => name !== vertexName)[0];
-      let adjacentVertex = vertices.filter(vertex => vertex.name === adjacentVertexName);
-      adjacentVertices.push(adjacentVertex[0]);
+      let adjacentVertex = vertices.filter(vertex => vertex.name === adjacentVertexName)[0];
+      adjacentVertices.push(adjacentVertex);
     }
   }
   return adjacentVertices.filter(vertex => vertex.distance === null);
