@@ -14,6 +14,19 @@ function bfs(rootNode, vertices, edges) {
   return explored
 }
 
+// startingNode.distance = 0
+// let discovered = [startingNode]
+// let discoverOrder = [startingNode]
+// while(discovered.length != 0){
+//   let currentNode = discovered.shift()
+//   let adjacentNodes = findAdjacent(currentNode.name, vertices, edges)
+//   discoverOrder = discoverOrder.concat(adjacentNodes);
+//   markDistanceAndPredecessor(currentNode, adjacentNodes)
+//   discovered = discovered.concat(adjacentNodes)
+// }
+// return discoverOrder
+// }
+
 function findAdjacent(node, vertices, edges) {
   const foundEdges = edges.filter(edge => edge.includes(node))
   let adjacentVertices = foundEdges.map(edge => edge.find(vertex => vertex != node))
