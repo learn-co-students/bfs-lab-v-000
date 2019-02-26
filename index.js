@@ -7,3 +7,11 @@ function findAdjacent(rootNode, vertices, edges) {
   let names = pairs.map(e => e.find(n => n != rootNode))
   return vertices.filter(v => names.includes(v.name) && v.distance == null)
 }
+
+function markDistanceAndPredecessor(predecessor, adjacentNodes) {
+  for (var i = 0; i < adjacentNodes.length; i++) {
+    adjacentNodes[i].predecessor = predecessor
+    adjacentNodes[i].distance = 1
+  }
+  return adjacentNodes
+}
