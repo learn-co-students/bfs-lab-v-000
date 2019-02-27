@@ -1,13 +1,4 @@
 function bfs(rootNode, vertices, edges){
-// Initialize empty nodes array
-// Initialize queue w/ rootNode only
-// Use findAdjacent() to return adjacentNodes
-// Use markDistanceAndPredeccesor to change adjacentNodes
-// Remove rootNode from queue, replace w/ first adjacentNode
-// Push former array in queue into nodes array
-// Repeat until all nodes were in queue
-// Return nodes array
-
   const nodes = []
   const queue = [rootNode]
   rootNode.distance = 0
