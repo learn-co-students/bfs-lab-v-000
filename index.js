@@ -25,7 +25,7 @@ function bfs(rootNode, vertices, edges){
   return x
 }
 
-const findAdjacent = (node, vertices, edges) => {
+const findAdjacentNodes = (node, vertices, edges) => {
   //finds node and returns the vertices[i] object
   const edgeResult = edges.find(x => x[0] === node)
   const prevResult = edges.find(x => x[1] === node)
