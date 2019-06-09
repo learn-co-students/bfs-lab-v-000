@@ -1,5 +1,16 @@
 function bfs(rootNode, vertices, edges){
-  return vertices.sort((a,b) => {a.distance < b.distance})
+  rootNode.distance = 0;
+  let discovered = [rootNode];
+  let discoverOrder = [rootNode];
+  while (discovered.length != 0) {
+    let currentNode = discovered.shift();
+    let adjacentNodes = findAdjacent(currentNode.name, vertices, edges);
+    discoverOrder = discoverOrder.concat(adjacentNodes)
+    markDistanceAndPredecessor(currentNode, adjacentNodes)
+    discovered = discovered.concat(adjacentNodes)
+  }
+
+  return discoverOrder;
 }
 
 
@@ -12,13 +23,20 @@ function findAdjacent(rootNode, vertices, edges) {
     edge.map(e => {e === rootNode ? findEdges.push(edge): null})
   })
 
-  endPoints.push(findEdges[0][0], findEdges[1][1])
-
+  if (findEdges.length > 0) {
+    if (findEdges.length === 1) {
+      endPoints.push(findEdges[0][0])
+    } else if (findEdges.length === 2) {
+      endPoints.push(findEdges[0][0], findEdges[1][1])
+    }
     endPoints.map(endPoint => {
-      	vertices.map(vertex => {vertex.name === endPoint ? adjacentNodes.push(vertex): null})
+        vertices.map(vertex => {vertex.name === endPoint ? adjacentNodes.push(vertex): null})
     })
+    return adjacentNodes.filter(node => node.distance == null);
+  } else {
+    return adjacentNodes
+  }
 
-  return adjacentNodes.filter(node => node.distance == null);
 }
 
 function markDistanceAndPredecessor(vertex, adjacentNodes) {
