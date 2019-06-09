@@ -9,7 +9,6 @@ function bfs(rootNode, vertices, edges){
     markDistanceAndPredecessor(currentNode, adjacentNodes)
     discovered = discovered.concat(adjacentNodes)
   }
-
   return discoverOrder;
 }
 
@@ -34,9 +33,8 @@ function findAdjacent(rootNode, vertices, edges) {
     })
     return adjacentNodes.filter(node => node.distance == null);
   } else {
-    return adjacentNodes
+    return adjacentNodes;
   }
-
 }
 
 function markDistanceAndPredecessor(vertex, adjacentNodes) {
