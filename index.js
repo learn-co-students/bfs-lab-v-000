@@ -6,24 +6,11 @@ function bfs(rootNode, vertices, edges){
     while(queue.length > 0) {
         let firstNode = queue.shift(); 
         visitedNodes.push(firstNode); 
-        let adjacentNodes = findAdjacent(firstNode, vertices, edges); 
+        let adjacentNodes = findAdjacent(firstNode.name, vertices, edges); 
         markDistanceAndPredecessor(firstNode, adjacentNodes)
         queue = queue.concat(adjacentNodes); 
-        console.log(queue); 
     }    
     return visitedNodes; 
-}
-
-function testWhile(number){
-    let queue = number; 
-    console.log("start " + number)
-
-    while(queue != 0) {
-        console.log("inside while block, queue is currently " + queue)
-        queue = queue - 1; 
-        console.log("bottom of block, queue now equals " + queue); 
-    }    
-    console.log("finish") 
 }
 
 
