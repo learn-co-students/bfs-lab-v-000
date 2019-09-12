@@ -1,6 +1,7 @@
 function bfs(rootNode, vertices, edges){
     let queue = []; 
     let visitedNodes = []; 
+    rootNode.distance = 0; 
     queue.push(rootNode); 
 
     while(queue.length > 0) {
