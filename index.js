@@ -56,3 +56,10 @@ function isVerticeUndiscovered(vertix) {
         return true; 
     } 
 }
+
+function markDistanceAndPredecessor(vertice, adjacentNodes){
+    for(let i = 0; i < adjacentNodes.length; i++){
+        adjacentNodes[i].predecessor = vertice; 
+        adjacentNodes[i].distance = 1;
+     }
+}
