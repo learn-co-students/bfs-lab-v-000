@@ -1,5 +1,16 @@
 function bfs(rootNode, vertices, edges){
+    let queue = []; 
+    let visitedNodes = []; 
+    queue.push(rootNode); 
 
+    while(queue.length != 0) {
+        let firstNode = queue.shift(); 
+        visitedNodes.push(firstNode); 
+        let adjacentNodes = findAdjacent(firstNode, vertices, edges); 
+        markDistanceAndPredecessor(firstNode, adjacentNodes)
+        queue = queue.concat(adjacentNodes); 
+    }    
+    return visitedNodes; 
 }
 
 
