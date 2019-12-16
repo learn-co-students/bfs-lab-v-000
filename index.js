@@ -1,44 +1,67 @@
-function bfs(rootNode, vertices, edges){
-  rootNode.distance = 0;
-  let discovered = [rootNode];
-  let discoverOrder = [rootNode];
-  while (discovered.length != 0) {
-    let currentNode = discovered.shift();
-    let adjacentNodes = findAdjacent(currentNode.name, vertices, edges);
-    discoverOrder = discoverOrder.concat(adjacentNodes)
-    markDistanceAndPredecessor(currentNode, adjacentNodes)
-    discovered = discovered.concat(adjacentNodes)
-  }
-  return discoverOrder;
+let edges = [
+    ['14th&6th', '23rd&6th'],
+    ['23rd&6th', '34th&6th'],
+    ['34th&6th', '28th&Bwy'],
+    ['28th&Bwy', '23rd&Bwy'],
+    ['23rd&Bwy', '14th&Lex'],
+    ['14th&Lex', '23rd&Lex']
+];
+
+let vertices = [
+  {name: '34th&6th', distance: null, predecessor: null},
+  {name: '23rd&6th', distance: null, predecessor: null},
+  {name: '14th&6th', distance: null, predecessor: null},
+  {name: '28th&Bwy', distance: null, predecessor: null},
+  {name: '23rd&Bwy', distance: null, predecessor: null},
+  {name: '14th&Lex', distance: null, predecessor: null},
+  {name: '23rd&Lex', distance: null, predecessor: null},
+];
+
+let queue = [];
+let visitedList = [];
+let visitedNode;
+let adjacentNodes;
+let current;
+
+
+let addToQueue = node => {
+  queue.push(node);
 }
 
-
-function findAdjacent(rootNode, vertices, edges) {
+let findAdjacent = (vertexName, vertices, edges) => {
+  let adjacentVertices = [];
   let adjacentNodes = [];
-  let findEdges =[];
-  let endPoints = [];
 
-  edges.map(edge => {
-    edge.map(e => {e === rootNode ? findEdges.push(edge): null})
-  })
+  adjacentVertices = edges.filter(edge => edge.includes(vertexName)).flat().filter(neighbor => neighbor !== vertexName);
 
-  if (findEdges.length > 0) {
-    if (findEdges.length === 1) {
-      endPoints.push(findEdges[0][0])
-    } else if (findEdges.length === 2) {
-      endPoints.push(findEdges[0][0], findEdges[1][1])
-    }
-    endPoints.map(endPoint => {
-        vertices.map(vertex => {vertex.name === endPoint ? adjacentNodes.push(vertex): null})
-    })
-    return adjacentNodes.filter(node => node.distance == null);
-  } else {
-    return adjacentNodes;
-  }
+  adjacentVertices.map(v => {
+    adjacentNodes = adjacentNodes.concat(vertices.filter(vertex => vertex.name == v));
+  });
+
+  return adjacentNodes.filter(node => node.distance == null);
 }
 
-function markDistanceAndPredecessor(vertex, adjacentNodes) {
-  adjacentNodes.forEach(adjacentNode => adjacentNode.distance = 1)
-  adjacentNodes.forEach(adjacentNode => adjacentNode.predecessor = vertex)
-  return adjacentNodes
+let markDistanceAndPredecessor = (vertexName, adjacentNodes) => {
+  return adjacentNodes.map(node => {
+    node.distance = 1;
+    node.predecessor = vertexName;
+  });
+};
+
+let bfs = (startingNode, vertices, edges) => {
+  current = vertices.filter(vertex => vertex.name == startingNode.name)[0];
+  !queue.find(node => node.name == current.name) ? addToQueue(current): null;
+  if (!visitedList.includes(current.name)) {
+    adjacentNodes = findAdjacent(current.name, vertices, edges).filter(node => !visitedList.includes(node.name))
+    markDistanceAndPredecessor(current.name, adjacentNodes);
+	  adjacentNodes.map(node => addToQueue(node));
+  }
+
+  while (!!queue.length) {
+    visitedNode = queue.shift();
+		!visitedList.includes(visitedNode)? visitedList.push(visitedNode): null;
+    !!queue.length? bfs(queue[0], vertices, edges): null;
+  }
+
+  return visitedList;
 }
