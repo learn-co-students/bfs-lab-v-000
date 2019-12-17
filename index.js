@@ -41,10 +41,10 @@ let findAdjacent = (vertexName, vertices, edges) => {
   return adjacentNodes.filter(node => node.distance == null);
 }
 
-let markDistanceAndPredecessor = (vertexName, adjacentNodes) => {
+let markDistanceAndPredecessor = (predecessor, adjacentNodes) => {
   return adjacentNodes.map(node => {
-    node.distance = 1;
-    node.predecessor = vertexName;
+    node.distance = predecessor.distance + 1;
+    node.predecessor = predecessor;
   });
 };
 
