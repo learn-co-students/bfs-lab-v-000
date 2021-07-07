@@ -55,7 +55,7 @@ describe('#markDistanceAndPredecessor', function() {
 
     expect(twentyThirdAndSixth.distance).toEqual(1)
     expect(twentyEighthAndBroadway.distance).toEqual(1)
-    expect(twentyEighthAndBroadway.predecessor).toEqual(thirtyFourthAndSixth)
+    expect(twentyEighthAndBroadway.predecessor).toEqual(thirtyFourthAndSixth.name)
   });
 });
 
